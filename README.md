@@ -1,13 +1,21 @@
-# Short Command
+# Shorten
 
-Simple tool to shorten (alias) command line calls.
+Simple tool to shorten any command in your terminal.
 
 
 # Example
 
-To shorten any command:
+To shorten a command:
 ```
 $ shorten kubectl k
+```
 
-Successfully shortened `kubectl` to `k`.
+Delete a shortened command.
+```
+$ shorten delete k
+```
+
+You can even shorten `shorten`!
+```
+$ shorten shorten s
 ```
