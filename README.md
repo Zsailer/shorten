@@ -1,10 +1,11 @@
 # Shorten
 
-Simple tool to shorten any command in your terminal.
+Simple (Python) tool to shorten any command in your terminal.
 
 ## Example
 
-**To shorten a command:**
+To shorten a command, call `shorten` and then the command and alias.
+
 ```
 $ shorten echo e
 ```
@@ -16,10 +17,13 @@ $ e "hello, world."
 hello, world.
 ```
 
-**Delete a shortened command.**
+Remove an alias by calling `shorten delete`.
 ```
 $ shorten delete e
 ```
+
+List all aliases by calling `shorten list all`.
+
 
 *You can even shorten `shorten`!*
 ```
