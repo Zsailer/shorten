@@ -2,39 +2,65 @@
 
 Simple (Python) tool to shorten any command in your terminal.
 
-## Example
+`shorten` takes the place of adding aliases in your bash profile. It also makes a few things a more convenient. For example, you can
+  1. create an alias from any location,
+  2. list your aliases and
+  3. search aliases by leading characters.
 
-**To shorten a command**, call `shorten` and then the command and alias.
+## Things you can do
+
+**Create an alias.** Call `shorten` (from anywhere!) on any command and give it an alias.
 
 ```
 $ shorten echo e
+Alias successfully added.
+```
+```
+$ # Let's try it out!
+$ echo 'Hello, world!'
+Hello, world!
 ```
 
-Now, try calling that command:
-```
-$ e "hello, world."
-
-hello, world.
-```
-
-**To remove an alias**, call `shorten delete`.
+**Remove an alias.** Call `shorten delete`.
 ```
 $ shorten delete e
 ```
 
-**To list all aliases**, call `shorten list all`.
+**List all your aliases.**
+```
+$ shorten list all
 
+Alias         Command
+-----         -------
+ipynb         jupyter notebook
+jlab          jupyter lab
+e             echo
+```
 
-*You can even shorten `shorten`!*
+**List aliases that start with substring.**
+```
+$ shorten list ip
+
+Alias         Command
+-----         -------
+ipynb         jupyter notebook
+```
+
+**Protip**: shorten `shorten` ;).
 ```
 $ shorten shorten s
 ```
 
 ## How does it work?
 
-When you install `shorten`, it creates a hidden folder in your home directory named `.shorten` (where your shortened commands will be stored). It then adds to a line to your `.bash_rc` file that exports the `.shorten` directory to your `$PATH` env variable.
+*Shorten* creates a hidden folder in your home directory. This is where your aliases will be stored. Each alias is actually a python script that redirects the alias to the true command.
 
-When you `shorten` a command, it creates a python script in the `~/.shorten` directory that redirects your shortened command to the actual command.
+*Shorten* adds a line to your bash profile that points your $PATH variable to `~/.shorten`. If you can't get your aliases to work (or you're using another shell like Zsh), check that the following line is in the right `rc` file.
+
+```
+export PATH="~/.shorten:$PATH"
+```
+
 
 ## Install
 

@@ -16,7 +16,8 @@ if __name__ == "__main__":
     # Create alias
     if args.command == 'delete':
         shorten.delete_alias(args.alias)
-    elif args.command == 'list' and args.alias == 'all':
-        shorten.list_aliases()
+    elif args.command == 'list':
+        shorten.list_aliases(args.alias)
     else:
         shorten.create_alias(args.command, args.alias)
+        print("Alias successfully added.")

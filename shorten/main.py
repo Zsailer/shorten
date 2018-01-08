@@ -31,8 +31,8 @@ def which(program):
 def create_alias(command, alias):
     """Create an alias."""
     # Check that command exists
-    if which(command) is None:
-        raise Exception("The `{}` command doesn't exist.".format(command))
+    # if which(command) is None:
+    #     raise Exception("The `{}` command doesn't exist.".format(command))
 
     # Check that alias is ok.
     if which(alias) is not None:
@@ -75,7 +75,7 @@ def delete_alias(alias):
     os.remove(alias_path)
 
 
-def list_aliases():
+def list_aliases(subalias):
     """Print list of aliases in terminal."""
     # Get all aliases files in shorten database.
     shorten_path = os.path.expanduser('~/.shorten')
@@ -91,4 +91,10 @@ def list_aliases():
         with open(fn, 'r') as f:
             c = f.readlines()[1].strip()
             command = c[c.find("'")+1:-1]
-            print("{}\t\t{}".format(alias, command))
+
+            # Check subalias
+            if subalias == 'all':
+                print("{}\t\t{}".format(alias, command))
+
+            elif subalias == alias[:len(subalias)]:
+                print("{}\t\t{}".format(alias, command))
