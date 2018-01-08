@@ -3,11 +3,12 @@ import shorten
 
 if __name__ == "__main__":
     # Initialize Parser
-    parser = argparse.ArgumentParser(description="Shorten any command in your terminal.")
+    parser = argparse.ArgumentParser(
+        description="Shorten any command in your terminal.")
 
     # Add two arguments
     parser.add_argument('command', help="Current command.")
-    parser.add_argument('alias', help="Proposed Aliase")
+    parser.add_argument('alias', help="Proposed Alias.")
 
     # Parse args.
     args = parser.parse_args()
@@ -15,5 +16,7 @@ if __name__ == "__main__":
     # Create alias
     if args.command == 'delete':
         shorten.delete_alias(args.alias)
+    elif args.command == 'list' and args.alias == 'all':
+        shorten.list_aliases()
     else:
         shorten.create_alias(args.command, args.alias)

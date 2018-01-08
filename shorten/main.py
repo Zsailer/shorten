@@ -1,10 +1,11 @@
 import os
 import stat
+import glob
 import argparse
 
 
 def which(program):
-    """Check if a program exists at the proposed name.
+    """Check if a command exists.
 
     Pulled logic from StackOverflow:
     https://stackoverflow.com/questions/377017/test-if-executable-exists-in-python
@@ -28,6 +29,7 @@ def which(program):
 
 
 def create_alias(command, alias):
+    """Create an alias."""
     # Check that command exists
     if which(command) is None:
         raise Exception("The `{}` command doesn't exist.".format(command))
@@ -64,9 +66,29 @@ def create_alias(command, alias):
 
 
 def delete_alias(alias):
-
+    """Delete an alias from the database."""
+    # Find shorten database location
     shorten_path = os.path.expanduser('~/.shorten')
     alias_path = os.path.join(shorten_path, alias)
 
     # Remove tree.
     os.remove(alias_path)
+
+
+def list_aliases():
+    """Print list of aliases in terminal."""
+    # Get all aliases files in shorten database.
+    shorten_path = os.path.expanduser('~/.shorten')
+    fnames = glob.glob(os.path.join(shorten_path, "*"))
+
+    # Print header
+    print('Alias\t\tCommand')
+    print('-----\t\t-------')
+
+    # Print aliases and command.
+    for fn in fnames:
+        alias = os.path.split(fn)[1]
+        with open(fn, 'r') as f:
+            c = f.readlines()[1].strip()
+            command = c[c.find("'")+1:-1]
+            print("{}\t\t{}".format(alias, command))
