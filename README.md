@@ -7,6 +7,9 @@ Simple (Python) tool to shorten any command in your terminal.
   2. list your aliases and
   3. search aliases by leading characters.
 
+
+Let me know if you experience any issues!
+
 ## Things you can do
 
 **Create an alias.** Call `shorten` (from anywhere!) on any command and give it an alias.
